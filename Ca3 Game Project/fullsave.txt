@@ -1,0 +1,7 @@
+RoomNum= 0
+charName= gerryfullsave
+charXP= 19
+charClass= Rogue
+charHP= 50
+charInventory= key| Its rusty but it looks alright
+

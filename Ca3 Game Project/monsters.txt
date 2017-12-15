@@ -1,0 +1,24 @@
+Name= Orc
+Description= An ordinary Orc
+ClassName= Warrior
+Health= 50
+minAttack= 1
+maxAttack= 5
+XPValue= 50
+
+Name= Troll
+Description= A very tall troll
+ClassName= Warrior
+Health= 25
+minAttack= 1
+maxAttack= 6
+XPValue= 50
+
+Name= Goblin
+Description= A small green Goblin
+ClassName= Warrior
+Health= 25
+minAttack= 2
+maxAttack= 6
+XPValue= 20
+

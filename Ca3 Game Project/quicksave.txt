@@ -1,0 +1,5 @@
+RoomNum= 1
+charName= qwerty
+charXP= 111
+charClass= Rogue
+

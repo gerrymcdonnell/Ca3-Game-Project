@@ -1,0 +1,21 @@
+Name= key
+Desc= Its rusty but it looks alright
+
+Name= door
+Desc= An old wooden Door
+
+Name= mailbox
+Desc= it looks unused
+
+Name= cup
+Desc= its a really dirty cup
+
+Name= note
+Desc= it says "get out of here!"
+
+Name= letter
+Desc= its just junk mail
+
+Name= food
+Desc= theres maggots in it,its unsafe to eat
+

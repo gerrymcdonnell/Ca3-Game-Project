@@ -1,0 +1,27 @@
+RoomNumber= 0
+RoomName= outside
+RoomDesc= Its sunny but yet cold there's nobody around you, in the distance to the north you can see and old house it looks empty. The road ahead is very muddy, there are foot prints in the ground it looks like somebody has been here. You look at the ground and see a [key]. Outside the old house is a [mailbox].
+Exits= 1
+
+RoomNumber= 1
+RoomName= old house
+RoomDesc= You enter the house, its dark and cold. The house is clearly empty, somebody lives here but there not home. The air is cold, smoke smoulders from the fireplace. On the table you noticed a piece of crumpled paper, it looks like a [note].
+Exits= 0 2
+
+RoomNumber= 2
+RoomName= kitchen
+RoomDesc= You enter the kitchen, theres [food] on the table but its clearly been there for months. You look around and feel like somebody is watching you. You notice a strange smell coming from another room in the house as you look down on the floor you see a red substance which looks like blood. 
+Exits= 1
+
+RoomNumber= 3
+RoomName= Hallway
+RoomDesc= Its dark, theres no light on anywhere. You see strange marks on the wall like somebody was trying to right something. You look around and see yet another [note].
+Exits= 4
+
+RoomNumber= 4
+RoomName= Cellar
+RoomDesc= A old lamp flickers burning in the corner, theres blood everywhere. You feel like somebody is watching you you turn around slowly and see a body on the ground. You cant make out what it is as its too dark. All of a sudden you hear a scream and something touches you..You see a [door] in the distance its broken and you see its nightime outside, somethign tells you to run...
+Exits= 3
+
+
+

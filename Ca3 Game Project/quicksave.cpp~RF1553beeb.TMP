@@ -1,0 +1,228 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include "quicksave.h"
+#include "functions.h"
+#include "character.h"
+
+using namespace std;
+
+QuickSave::QuickSave()
+{
+	roomNumber=-1;
+	characterName="default";
+	characterXP=0;
+	characterClass="default";
+}
+
+QuickSave::QuickSave(int roomNum,string playerName,int playerXP,string playerClass)
+{
+	roomNumber=roomNum;
+	characterName=playerName;
+	characterXP=playerXP;
+	characterClass=playerClass;
+}
+
+void QuickSave::display()
+{
+	cout << "Room Num:" <<	roomNumber << endl;
+	cout << "characterName: " <<	characterName << endl;
+	cout << "characterXP: " <<	characterXP << endl;
+	cout << "characterClass: " <<	characterClass << endl;
+}
+
+void QuickSave::SaveQuickSave(ofstream& outFile)
+{
+	//quicksave
+    outFile << "RoomNum= " << roomNumber << endl;
+    outFile << "charName= " << characterName << endl;
+	outFile << "charXP= " << characterXP << endl;
+	outFile << "charClass= " << characterClass << endl;
+    outFile << endl;
+}
+
+void QuickSave::LoadQuickSave(ifstream& inFile)
+{
+	//load the quick save
+	string garbage;
+	const int size= 200;
+    char data[size];
+
+	//room number
+	inFile >> garbage;
+	inFile>> roomNumber;
+
+	//character data - name
+	inFile >> garbage;
+	inFile.getline(data, size);
+	characterName=data;
+
+	//xp
+	inFile >> garbage;
+	inFile>> characterXP;
+
+
+	//class
+	inFile >> garbage;
+	inFile.getline(data, size);
+	characterClass=data;
+
+}
+
+//quick save getters
+int QuickSave::getRoomNum()
+{
+	return roomNumber;
+}
+
+string QuickSave::getPlayerName()
+{
+	return characterName;
+}
+int QuickSave::getPlayerXP()
+{
+	return characterXP;
+}
+
+string QuickSave::getPlayerClass()
+{
+	return characterClass;
+}
+
+
+
+//Fullsave
+FullSaveGame::FullSaveGame()
+{
+}
+
+FullSaveGame::FullSaveGame(int roomNum,string playerName,int playerXP,string playerClass,int playerHP,vector <Object> vInventory): QuickSave(roomNum, playerName,playerXP,playerClass)
+{
+	characterHP=playerHP;
+	m_inventory=vInventory;
+}
+
+void FullSaveGame::display()
+{
+	cout << "Displaying FullSave Data:"<<endl;
+	QuickSave::display();
+
+	//extra data added for full save
+	cout << "characterHP: " << characterHP<< endl;
+	for(int x=0;x<m_inventory.size();x++)
+	{
+		m_inventory[x].displayObject();
+	}
+}
+
+void FullSaveGame::SaveGame(ofstream& outFile)
+{
+	//Fullsave
+	string objName="";
+	string objDesc="";
+	string stemp="";
+	int numObjects=0;
+
+	numObjects=m_inventory.size();
+
+    outFile << "RoomNum= " << roomNumber << endl;
+    outFile << "charName= " << characterName << endl;
+	outFile << "charXP= " << characterXP << endl;
+	outFile << "charClass= " << characterClass << endl;
+
+	//extra data for a full save
+	outFile << "charHP= " << characterHP <<endl;
+
+	//idea here is to save the invetory as 
+	//objname|objDesc|objname|objDesc
+	for(int x=0;x<numObjects;x++)
+	{
+		objName=m_inventory[x].getName();
+		objDesc=m_inventory[x].getDesc();
+
+		//save
+		if(x+1==numObjects)
+			stemp=stemp + objName + "|" + objDesc;
+		else
+			stemp=stemp + objName + "|" + objDesc + "|";
+
+	}
+	outFile << "charInventory= " << stemp <<endl;
+
+    outFile << endl;
+}
+
+
+void FullSaveGame::LoadGame(ifstream& inFile)
+{
+	//load the quick save
+	string garbage="";
+	string stemp="";
+	vector<string> tempVector;
+	string objName="";
+	string objDesc="";
+
+	const int size= 200;
+    char data[size];
+
+	//room number
+	inFile >> garbage;
+	inFile>> roomNumber;
+
+	//character data - name
+	inFile >> garbage;
+	inFile.getline(data, size);
+	characterName=data;
+
+	//xp
+	inFile >> garbage;
+	inFile>> characterXP;
+
+
+	//class
+	inFile >> garbage;
+	inFile.getline(data, size);
+	characterClass=data;
+
+	//character hp
+	inFile >> garbage;
+	inFile>> characterHP;
+
+	//read in invectory
+	inFile >> garbage;
+	inFile.getline(data, size);
+	stemp=data;
+
+	//process string
+	StringSplit(stemp,"|",tempVector);
+	for(int x=0;x<tempVector.size();x++)
+	{
+		
+		cout << "obj name " << tempVector[x] << endl;
+		objName=tempVector[x];
+		x++;
+		cout << "obj Desc " << tempVector[x] << endl;
+		objDesc=tempVector[x];
+		//create object
+		Object o=Object(objName,objDesc);
+		m_inventory.push_back(o);
+	}
+
+
+
+}
+
+int FullSaveGame::getCharacterHP()
+{
+	return characterHP;
+}
+
+
+
+void FullSaveGame::getCharacterInventory(Character c)
+{
+	for(int x=0;x<m_inventory.size();x++)
+	{
+		
+	}
+}
